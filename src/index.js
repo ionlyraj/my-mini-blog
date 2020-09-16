@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import MyMiniBlogRouter from './routers/MyMiniBlogRouter';
+import configureStore from './store/configureStore';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>my content</div>
+    <MyMiniBlogRouter />
   </React.StrictMode>,
   document.getElementById('root')
 );
