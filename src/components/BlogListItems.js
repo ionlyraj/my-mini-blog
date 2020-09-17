@@ -1,15 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { deleteBlog } from '../actions/blogs';
+import { Link } from 'react-router-dom';
 
-const BlogListItems = ({dispatch, id, title, body, createdAt}) => (
+const BlogListItems = ({id, title, body, createdAt}) => (
   <div>
-    <h3>{title}</h3>
+    <Link to={`/edit/${id}`}><h3>{title}</h3></Link>
     <p>{body}</p>
     <p>{createdAt}</p>
-    <button onClick={ () => {
-      dispatch(deleteBlog(id))}}>Delete</button>
   </div>
 )
 
-export default connect()(BlogListItems);
+export default BlogListItems;

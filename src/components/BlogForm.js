@@ -4,10 +4,10 @@ import 'react-dates/lib/css/_datepicker.css';
 
 
 const BlogForm = (props) => {
-  const [title,setTitle] = useState('');
-  const [body,setBody] = useState('');
+  const [title,setTitle] = useState(props.blog ? props.blog.title : '');
+  const [body,setBody] = useState(props.blog ? props.blog.body : '');
   const [error,setError] = useState('');
-  const createdAt = moment();
+  const createdAt = props.blog ? moment(props.blog.createdAt) : moment();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
