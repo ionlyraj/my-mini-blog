@@ -1,9 +1,16 @@
 import React from 'react';
+import BlogForm from './BlogForm';
+import { connect } from 'react-redux';
+import { addBlog } from '../actions/blogs';
 
-const AddBlogPage = () => (
+const AddBlogPage = (props) => (
   <div>
-    This is from create blog page
+    <h2>Add Blog</h2>
+    <BlogForm onSubmit={(blog) => {
+      props.dispatch(addBlog(blog));
+      props.history.push('/');
+    }}/>
   </div>
 )
 
-export default AddBlogPage;
+export default connect()(AddBlogPage);
