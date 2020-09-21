@@ -10,7 +10,8 @@ export const addBlog = (blog) => {
 };
 
 export const startAddBlog = (blogData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       title = '', 
       body = '', 
@@ -19,7 +20,7 @@ export const startAddBlog = (blogData = {}) => {
     
     const blog = {title, body, createdAt};
 
-    return database.ref('blogs').push(blog).then((ref) => {
+    return database.ref(`users/${uid}/blogs`).push(blog).then((ref) => {
       dispatch(addBlog({
         id: ref.key,
         ...blog
@@ -39,8 +40,9 @@ export const editBlog = (id, updates) => {
 };
 
 export const startEditBlog = (id, updatesData) => {
-  return (dispatch) => {
-    return database.ref(`blogs/${id}`).update(updatesData).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/blogs/${id}`).update(updatesData).then(() => {
       dispatch(editBlog(
         id,
         updatesData
@@ -59,8 +61,9 @@ export const deleteBlog = (id) => {
 };
 
 export const startDeleteBlog = (id) => {
-  return (dispatch) => {
-    return database.ref(`blogs/${id}`).remove().then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/blogs/${id}`).remove().then(() => {
       dispatch(deleteBlog(id))
     })
   }
@@ -76,8 +79,9 @@ export const setBlogs = (blogs) => {
 };
 
 export const startSetBlogs = () => {
- return (dispatch) => {
-   return database.ref('blogs').once('value').then((snapshot) => {
+ return (dispatch, getState) => {
+   const uid = getState().auth.uid;
+   return database.ref(`users/${uid}/blogs`).once('value').then((snapshot) => {
     const blogs = [];
     snapshot.forEach((childSnapshot) => {
       blogs.push({
