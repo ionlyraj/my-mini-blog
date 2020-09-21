@@ -1,4 +1,6 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 var firebaseConfig = {
   apiKey: "AIzaSyAVXtUTuYidBhs4G904keCQEccMTTSbSlo",
@@ -13,8 +15,9 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+const googleAutheProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+export { firebase, googleAutheProvider, database as default };
 
 
 // database.ref('blogs').on('child_changed', (snapshot) => {

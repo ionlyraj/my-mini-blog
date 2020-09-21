@@ -19,7 +19,7 @@ export const startAddBlog = (blogData = {}) => {
     
     const blog = {title, body, createdAt};
 
-    database.ref('blogs').push(blog).then((ref) => {
+    return database.ref('blogs').push(blog).then((ref) => {
       dispatch(addBlog({
         id: ref.key,
         ...blog
@@ -38,12 +38,31 @@ export const editBlog = (id, updates) => {
     }
 };
 
+export const startEditBlog = (id, updatesData) => {
+  return (dispatch) => {
+    return database.ref(`blogs/${id}`).update(updatesData).then(() => {
+      dispatch(editBlog(
+        id,
+        updatesData
+      ))
+    })
+  }
+};
+
 // Delete blog
 
 export const deleteBlog = (id) => {
   return {
     type: 'DELETE_BLOG',
     id
+  }
+};
+
+export const startDeleteBlog = (id) => {
+  return (dispatch) => {
+    return database.ref(`blogs/${id}`).remove().then(() => {
+      dispatch(deleteBlog(id))
+    })
   }
 };
 
