@@ -21,7 +21,7 @@ const MyMiniBlogRouter = () => {
         <PrivateRoute path='/dashboard' component={BlogDashboardPage}/>
         <PrivateRoute path='/create' component={AddBlogPage} />
         <PrivateRoute path='/edit/:id' component={EditBlogPage} />
-        <Route path='/read' component={ReadBlogPage} />
+        <PublicRoute path='/read/:id' component={ReadBlogPage} />
         <Route component= {NotFoundPage} />
       </Switch>
     </div>

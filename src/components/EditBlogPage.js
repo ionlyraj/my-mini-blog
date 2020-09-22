@@ -5,7 +5,7 @@ import { startEditBlog, startDeleteBlog } from '../actions/blogs';
 
 const EditBlogPage = (props) => (
   <div>
-    Editing page {props.match.params.id}
+    <p>Post readable at: https://my-mini-blog-reactapp.herokuapp.com/read/{props.match.params.id}</p>
     <BlogForm 
       blog = {props.blog}
       onSubmit={(blog) => {
@@ -21,7 +21,7 @@ const EditBlogPage = (props) => (
       Delete
     </button>
   </div>
-)
+);
  
 const mapStateToProps = (state, props) => {
   return {
@@ -29,6 +29,6 @@ const mapStateToProps = (state, props) => {
       return blog.id === props.match.params.id
     })
   }
-}
+};
 
 export default connect(mapStateToProps)(EditBlogPage);

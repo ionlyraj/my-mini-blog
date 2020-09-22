@@ -16,6 +16,8 @@ const blogsReducer = (state = blogDefaultState, action) => {
       });
     case 'SET_BLOGS':
       return action.blogs;
+    case 'READ_BLOG':
+      return [...state, action.blog];
     default: 
       return state;
   }

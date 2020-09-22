@@ -93,3 +93,29 @@ export const startSetBlogs = () => {
   })
  }
 };
+
+export const readBlog = (blog) => {
+  return {
+    type: 'READ_BLOG',
+    blog
+  }
+};
+
+export const startReadBlog = (id) => {
+  return (dispatch) =>{
+    return database.ref('users').once('value').then((snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const blogs = childSnapshot.child('blogs');
+        blogs.forEach((blog) => {
+          if(blog.key===id){
+            console.log(blog.val());
+            dispatch(readBlog({
+              id: blog.key,
+              ...blog.val()
+            }));
+          }
+        })
+      })
+    })
+  }
+};
