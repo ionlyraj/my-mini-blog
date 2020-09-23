@@ -5,12 +5,18 @@ import { startAddBlog } from '../actions/blogs';
 
 const AddBlogPage = (props) => (
   <div>
-    <h2>Add Blog</h2>
-    <BlogForm onSubmit={(blog) => {
-      props.dispatch(startAddBlog(blog));
-      props.history.push('/');
-    }}/>
+    <div className='page-header'>
+      <div className='content-container'>
+        <h1 className='page-headr__title'>Add Blog</h1>
+      </div>
+    </div>
+    <div className='content-container'>
+      <BlogForm onSubmit={(blog) => {
+        props.dispatch(startAddBlog(blog));
+        props.history.push('/');
+      }}/>
+    </div>
   </div>
-)
+);
 
 export default connect()(AddBlogPage);

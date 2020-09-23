@@ -25,24 +25,26 @@ const BlogForm = (props) => {
   };
 
   return (
-    <div>
-      {error && <p>{error}</p>}
-      <form onSubmit={onFormSubmit}>
-        <input 
-          type='text' 
-          placeholder='Enter blog title'
-          value={title}
-          autoFocus
-          onChange={(e) => {setTitle(e.target.value)}}
-        />
-        <textarea 
-          placeholder='Enter blog body'
-          value={body}
-          onChange={(e) => {setBody(e.target.value)}}
-        />
-        <button>Add Blog</button>
-      </form>
-    </div>
+    <form className='form' onSubmit={onFormSubmit}>
+      {error && <p className='form__error'>{error}</p>}
+      <input 
+        type='text' 
+        className='text-input'
+        placeholder='Enter blog title'
+        value={title}
+        autoFocus
+        onChange={(e) => {setTitle(e.target.value)}}
+      />
+      <textarea 
+        className='textarea'
+        placeholder='Enter blog body'
+        value={body}
+        onChange={(e) => {setBody(e.target.value)}}
+      />
+      <div>
+        <button className='button'>Save Blog</button>
+      </div>
+    </form>
   )
 };
 

@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import MyMiniBlogRouter, { history } from './routers/MyMiniBlogRouter';
 import configureStore from './store/configureStore';
-import { startSetBlogs } from './actions/blogs';
+import { startSetBlogs, startReadBlog } from './actions/blogs';
 import { login, logout } from './actions/auth';
 import { firebase } from './firebase/firebase';
+import './styles/styles.scss';
+import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 
@@ -32,7 +34,7 @@ const appRender = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <p>Loading...</p>
+    <LoadingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -49,8 +51,16 @@ firebase.auth().onAuthStateChanged((user) => {
   }
   else {
     store.dispatch(logout());
-    appRender();
-    history.push('/');
+    const id = history.location.pathname.split('/');
+
+    if(history.location.pathname === `/read/${id[2]}`) {
+      store.dispatch(startReadBlog(id[2])).then(() => {
+        appRender();
+      })
+    } else{
+      appRender();
+      history.push('/');
+    }
   }
 });
 
