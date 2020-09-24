@@ -1,5 +1,7 @@
 import moment from 'moment';
 import React, { useState } from 'react';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import 'react-dates/lib/css/_datepicker.css';
 
 
@@ -35,11 +37,18 @@ const BlogForm = (props) => {
         autoFocus
         onChange={(e) => {setTitle(e.target.value)}}
       />
-      <textarea 
+      <CKEditor 
         className='textarea'
         placeholder='Enter blog body'
-        value={body}
-        onChange={(e) => {setBody(e.target.value)}}
+        onInit={(editor) => {
+          editor.data.set(body);
+          console.log( 'Editor is ready to use!', editor );}
+        }
+        editor={ClassicEditor}
+        onChange={(e, editor) => {
+          const data = editor.getData();
+          setBody(data)}
+        }
       />
       <div>
         <button className='button'>Save Blog</button>

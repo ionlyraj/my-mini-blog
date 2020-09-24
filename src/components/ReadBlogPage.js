@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import parse from 'react-html-parser';
 import moment from 'moment';
 
 const ReadBlogPage = (props) => {
@@ -18,7 +19,7 @@ const ReadBlogPage = (props) => {
         </div>
       </div>
       <div className='content-container'>
-        <p>{blog.body}</p>
+        {parse(blog.body)}
       </div>
     </div>
   )
