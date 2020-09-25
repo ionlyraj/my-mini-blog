@@ -14,3 +14,15 @@
   @extend .text-input;
   height: 30rem;
 }
+
+.ck.ck-editor {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+  border-radius: var(--ck-border-radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  height: 30rem;
+}

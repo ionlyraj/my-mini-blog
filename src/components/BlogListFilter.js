@@ -10,7 +10,7 @@ const BlogListFilter = (props) => (
       <div className='input-group'>
         <div className='input-group'>
           <div className='input-group__item'>
-            <input className='text-input' type='text' placeholder={'Search blog'} onChange={(e)=>{
+            <input className='text-input' type='text' value={props.filters.text} placeholder={'Search blog'} onChange={(e)=>{
               props.dispatch(setTextFilter(e.target.value))
             }}/>
           </div>

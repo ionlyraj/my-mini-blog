@@ -42,7 +42,7 @@ const BlogForm = (props) => {
         placeholder='Enter blog body'
         onInit={(editor) => {
           editor.data.set(body);
-          console.log( 'Editor is ready to use!', editor );}
+          }
         }
         editor={ClassicEditor}
         onChange={(e, editor) => {
