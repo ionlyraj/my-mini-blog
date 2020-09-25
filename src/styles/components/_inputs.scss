@@ -16,13 +16,10 @@
   margin-bottom: $m-size;
 }
 
-.ck.ck-editor {
-  margin-bottom: $m-size;
-}
-
 .ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
   border-radius: var(--ck-border-radius);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   height: 30rem;
+  margin-bottom: $m-size;
 }
