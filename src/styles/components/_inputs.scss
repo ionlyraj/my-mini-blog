@@ -10,14 +10,14 @@
   @extend .text-input;
 }
 
-.textarea {
+.CKEditor {
   @extend .text-input;
   height: 30rem;
+  margin-bottom: $m-size;
 }
 
 .ck.ck-editor {
-  position: relative;
-  margin-bottom: 10px;
+  margin-bottom: $m-size;
 }
 
 .ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {

@@ -38,7 +38,7 @@ const BlogForm = (props) => {
         onChange={(e) => {setTitle(e.target.value)}}
       />
       <CKEditor 
-        className='textarea'
+        className='CKEditor'
         placeholder='Enter blog body'
         onInit={(editor) => {
           editor.data.set(body);
